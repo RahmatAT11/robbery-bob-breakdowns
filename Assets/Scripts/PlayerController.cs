@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 _movementDir;
+
+    private Rigidbody2D _playerRigidbody;
+    
+    private float _movementSpeed = 2;
+
+    private void Start()
+    {
+        _playerRigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+        Walking();
+    }
+
+    private void Walking()
+    {
+        float xAxis = Input.GetAxis("Horizontal");
+        float yAxis = Input.GetAxis("Vertical");
         
+        _movementDir.Set(xAxis, yAxis, 0f);
+        
+        float time = Time.deltaTime;
+        
+        _playerRigidbody.MovePosition(transform.position + _movementDir * _movementSpeed * time);
     }
 }
