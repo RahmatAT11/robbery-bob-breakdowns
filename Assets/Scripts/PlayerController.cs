@@ -1,21 +1,22 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector3 _movementDir;
+    private float _movementSpeed = 5f;
 
-    private Rigidbody2D _playerRigidbody;
-    
-    private float _movementSpeed = 2;
+    private Vector2 _movementDirection;
 
-    private void Start()
+    private Rigidbody2D _rigidbody;
+
+    private void Awake()
     {
-        _playerRigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        
+        ProcessInput();
     }
 
     private void FixedUpdate()
@@ -23,15 +24,16 @@ public class PlayerController : MonoBehaviour
         Walking();
     }
 
+    private void ProcessInput()
+    {
+        float xAxis = Input.GetAxisRaw("Horizontal");
+        float yAxis = Input.GetAxisRaw("Vertical");
+
+        _movementDirection = new Vector2(xAxis, yAxis).normalized;
+    }
+
     private void Walking()
     {
-        float xAxis = Input.GetAxis("Horizontal");
-        float yAxis = Input.GetAxis("Vertical");
-        
-        _movementDir.Set(xAxis, yAxis, 0f);
-        
-        float time = Time.deltaTime;
-        
-        _playerRigidbody.MovePosition(transform.position + _movementDir * _movementSpeed * time);
+        _rigidbody.velocity = _movementDirection * _movementSpeed;
     }
 }
