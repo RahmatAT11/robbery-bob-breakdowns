@@ -48,4 +48,28 @@ public class GameController : MonoBehaviour, IPointerDownHandler, IDragHandler, 
         _inputPosition = Vector2.zero;
         _imageJoystick.rectTransform.anchoredPosition = Vector2.zero;
     }
+
+    public float InputHorizontal()
+    {
+        if (_inputPosition.x != 0)
+        {
+            return _inputPosition.x;
+        }
+        else
+        {
+            return Input.GetAxis("Horizontal");
+        }
+    }
+
+    public float InputVertical()
+    {
+        if (_inputPosition.y != 0)
+        {
+            return _inputPosition.y;
+        }
+        else
+        {
+            return Input.GetAxis("Vertical");
+        }
+    }
 }
