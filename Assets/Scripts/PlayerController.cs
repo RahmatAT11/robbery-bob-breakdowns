@@ -2,17 +2,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameController _gameController;
+    [SerializeField] private GameJoystickController gameJoystickController;
     private float _movementSpeed = 10.0f;
-    private float _rotationSpeed = 40.0f;
     private Vector3 _movementDirection;
+    
     private Rigidbody2D _rigidbody;
-    private Camera _mainCamera;
+    
+    private bool _isSprinting;
+    public bool IsSprinting
+    {
+        get
+        {
+            return _isSprinting;
+        }
+        set
+        {
+            _isSprinting = value;
+        }
+    }
+    private float _sprintSpeedMultiplier = 1.5f;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _mainCamera = Camera.main;
     }
 
     private void Start()
@@ -29,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         Walking();
         Turning();
+        Sprinting();
     }
 
     private void ProcessInput()
@@ -36,18 +49,35 @@ public class PlayerController : MonoBehaviour
         // mengambil nilai axis
         /*float xAxis = Input.GetAxisRaw("Horizontal");
         float yAxis = Input.GetAxisRaw("Vertical");*/
-        float xAxis = _gameController.InputHorizontal();
-        float yAxis = _gameController.InputVertical();
+        float xAxis = gameJoystickController.InputHorizontal();
+        float yAxis = gameJoystickController.InputVertical();
 
         // membuat vector baru sesuai arah axis
         _movementDirection = new Vector3(xAxis, yAxis, 0f).normalized;
         Debug.Log(_movementDirection);
+
+        /*if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _isSprinting = true;
+        }
+        else
+        {
+            _isSprinting = false;
+        }*/
     }
 
     private void Walking()
     {
         // menggerakkan player ke vector
         _rigidbody.velocity = _movementDirection * _movementSpeed;
+    }
+
+    private void Sprinting()
+    {
+        if (_isSprinting)
+        {
+            _rigidbody.velocity = _movementDirection * _movementSpeed * _sprintSpeedMultiplier;
+        }
     }
 
     private void Turning()
