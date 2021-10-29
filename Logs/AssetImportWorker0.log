@@ -304,3 +304,77 @@ System memory in use after: 79.6 MB.
 Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2300.
 Total: 4.395022 ms (FindLiveObjects: 0.297097 ms CreateObjectMapping: 0.087995 ms MarkObjects: 3.793934 ms  DeleteObjects: 0.214091 ms)
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005669 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.414 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1816 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 79.6 MB.
+System memory in use after: 79.6 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2304.
+Total: 4.547969 ms (FindLiveObjects: 0.303238 ms CreateObjectMapping: 0.089067 ms MarkObjects: 3.963321 ms  DeleteObjects: 0.190347 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 1732.393079 seconds.
+  path: Assets/Scripts/Game Controller Interface
+  artifactKey: Guid(742a493289e205de297ced86780ff3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Game Controller Interface using Guid(742a493289e205de297ced86780ff3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0eaccd4ff5d40cf1f0ce789224dde8b7') in 0.010300 seconds
+  Import took 0.015331 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003446 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.288 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.67 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1815 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 79.6 MB.
+System memory in use after: 79.6 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2307.
+Total: 7.227062 ms (FindLiveObjects: 0.333455 ms CreateObjectMapping: 0.111810 ms MarkObjects: 6.446959 ms  DeleteObjects: 0.330981 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 30.365061 seconds.
+  path: Assets/Scripts/GameSprintController.cs
+  artifactKey: Guid(9fa283da58e3e181ba650615451071b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameSprintController.cs using Guid(9fa283da58e3e181ba650615451071b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7877da546c6afe88fc0567705456366a') in 0.121936 seconds
+  Import took 0.171693 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.763703 seconds.
+  path: Assets/Scripts/GameJoystickController.cs
+  artifactKey: Guid(ae55f809d4f6522538ab1850ac9ff139) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameJoystickController.cs using Guid(ae55f809d4f6522538ab1850ac9ff139) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ede618bc2c1a839cfb11633b3243c47b') in 0.004291 seconds
+  Import took 0.012667 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.034457 seconds.
+  path: Assets/Scripts/GameJoystickController.cs
+  artifactKey: Guid(ae55f809d4f6522538ab1850ac9ff139) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameJoystickController.cs using Guid(ae55f809d4f6522538ab1850ac9ff139) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ede618bc2c1a839cfb11633b3243c47b') in 0.003258 seconds
+  Import took 0.028580 seconds .
+
