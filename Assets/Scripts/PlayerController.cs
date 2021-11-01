@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
             _isSprinting = value;
         }
     }
-    private float _sprintSpeedMultiplier = 1.5f;
+    private float _sprintSpeedMultiplier = 1.7f;
 
     private void Awake()
     {
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
 
         // membuat vector baru sesuai arah axis
         _movementDirection = new Vector3(xAxis, yAxis, 0f).normalized;
-        Debug.Log(_movementDirection);
 
         /*if (Input.GetKey(KeyCode.LeftShift))
         {

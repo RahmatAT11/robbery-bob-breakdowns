@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 536806467}
+  sprintTimeDuration: 5
 --- !u!1 &405994341
 GameObject:
   m_ObjectHideFlags: 0
