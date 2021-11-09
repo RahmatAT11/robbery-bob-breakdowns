@@ -7,7 +7,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        _offsetPosition.Set(playerTransform.position.x, playerTransform.position.y, -10f);
+        Vector3 playerPosition = playerTransform.position;
+        _offsetPosition.Set(playerPosition.x, playerPosition.y, -10f);
         transform.position = _offsetPosition;
     }
 }

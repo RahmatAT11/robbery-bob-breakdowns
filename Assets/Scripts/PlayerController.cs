@@ -89,4 +89,13 @@ public class PlayerController : MonoBehaviour
             _rigidbody.MoveRotation(_rigidbody.rotation + angle);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Stealable"))
+        {
+            ItemController item = other.gameObject.GetComponent<ItemController>();
+            Debug.Log(item.ItemName + " " + item.ItemValue);
+        }
+    }
 }
