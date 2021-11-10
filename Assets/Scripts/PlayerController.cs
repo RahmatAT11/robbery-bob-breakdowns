@@ -1,14 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameJoystickController gameJoystickController;
     private float _movementSpeed = 10.0f;
     private Vector3 _movementDirection;
-    
+
     private Rigidbody2D _rigidbody;
-    
+
     private bool _isSprinting;
+
+    [SerializeField] Text coinCounter;
+    [SerializeField] GameObject coinMagnet;
+
+    int coinNumber;
+
     public bool IsSprinting
     {
         get
@@ -35,6 +42,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ProcessInput();
+
+        coinCounter.text = coinNumber.ToString();
+        coinMagnet.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
     private void FixedUpdate()
@@ -87,6 +97,15 @@ public class PlayerController : MonoBehaviour
             float angle = Vector2.SignedAngle(transform.up, _movementDirection);
             
             _rigidbody.MoveRotation(_rigidbody.rotation + angle);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag.Equals("Coin"))
+        {
+            Destroy(col.gameObject);
+            coinNumber += 1;
         }
     }
 }
