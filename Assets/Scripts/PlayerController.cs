@@ -1,49 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterBaseController
 {
     [SerializeField] private GameJoystickController gameJoystickController;
-    private float _movementSpeed = 10.0f;
-    private Vector3 _movementDirection;
-
-    private Rigidbody2D _rigidbody;
-
-    private bool _isSprinting;
 
     [SerializeField] Text coinCounter;
     [SerializeField] GameObject coinMagnet;
 
-    int coinNumber;
-
-    public bool IsSprinting
-    {
-        get
-        {
-            return _isSprinting;
-        }
-        set
-        {
-            _isSprinting = value;
-        }
-    }
-    private float _sprintSpeedMultiplier = 1.7f;
+    private int _coinNumber;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        SetRotationToZero();
     }
 
     private void Update()
     {
         ProcessInput();
 
-        coinCounter.text = coinNumber.ToString();
+        coinCounter.text = _coinNumber.ToString();
         coinMagnet.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
@@ -63,7 +44,7 @@ public class PlayerController : MonoBehaviour
         float yAxis = gameJoystickController.InputVertical();
 
         // membuat vector baru sesuai arah axis
-        _movementDirection = new Vector3(xAxis, yAxis, 0f).normalized;
+        MovementDirection = new Vector3(xAxis, yAxis, 0f).normalized;
 
         /*if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -75,37 +56,12 @@ public class PlayerController : MonoBehaviour
         }*/
     }
 
-    private void Walking()
-    {
-        // menggerakkan player ke vector
-        _rigidbody.velocity = _movementDirection * _movementSpeed;
-    }
-
-    private void Sprinting()
-    {
-        if (_isSprinting)
-        {
-            _rigidbody.velocity = _movementDirection * _movementSpeed * _sprintSpeedMultiplier;
-        }
-    }
-
-    private void Turning()
-    {
-        // rotate if vector _movementDirection is not zero
-        if (_movementDirection != Vector3.zero)
-        {
-            float angle = Vector2.SignedAngle(transform.up, _movementDirection);
-            
-            _rigidbody.MoveRotation(_rigidbody.rotation + angle);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag.Equals("Coin"))
         {
             Destroy(col.gameObject);
-            coinNumber += 1;
+            _coinNumber += 1;
         }
     }
 }
