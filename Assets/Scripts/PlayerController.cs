@@ -95,7 +95,9 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Stealable"))
         {
             ItemController item = other.gameObject.GetComponent<ItemController>();
-            Debug.Log(item.ItemName + " " + item.ItemValue);
+            ScoreController.Score += item.ItemValue;
+            Debug.Log(ScoreController.Score);
+            Destroy(item.gameObject);
         }
     }
 }
