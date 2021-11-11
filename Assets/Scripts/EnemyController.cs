@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : CharacterBaseController
@@ -7,6 +8,8 @@ public class EnemyController : CharacterBaseController
 
     private float _detectionRadius = 5.0f;
     private float _detectionAngle = 90.0f;
+
+    [SerializeField] private List<Transform> paths;
 
     private void Awake()
     {
