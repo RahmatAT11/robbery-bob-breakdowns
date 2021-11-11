@@ -6,7 +6,7 @@ public class EnemyController : CharacterBaseController
     private PlayerController player;
 
     private float _detectionRadius = 5.0f;
-    private float _detectionAngle = 45.0f;
+    private float _detectionAngle = 90.0f;
 
     private void Awake()
     {
@@ -51,9 +51,34 @@ public class EnemyController : CharacterBaseController
 
         if (distanceToPlayer.magnitude <= _detectionRadius)
         {
-            Debug.Log("Player has been detected!");
+            if (Vector3.Dot(distanceToPlayer.normalized, transform.up) > 
+                Mathf.Cos((_detectionAngle * 0.5f) * Mathf.Deg2Rad))
+            {
+                Debug.Log("Player has been detected!");
+                return player;
+            }
         }
         
-        return player;
+        return null;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Color c = new Color(0.8f, 0, 0, 0.4f);
+        UnityEditor.Handles.color = c;
+
+        Vector3 rotatedForward = Quaternion.Euler(
+            0,
+            0,
+            -_detectionAngle * 0.5f) * transform.up;
+
+        UnityEditor.Handles.DrawSolidArc(
+            transform.position,
+            Vector3.forward,
+            rotatedForward,
+            _detectionAngle,
+            _detectionRadius);
+    }
+#endif
 }
