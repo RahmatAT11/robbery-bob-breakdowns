@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,11 @@ public class EnemyController : CharacterBaseController
 
     private float _detectionRadius = 5.0f;
     private float _detectionAngle = 90.0f;
+    private float _distance;
+
+    private int _currentPathIndex = 0;
+
+    private bool _isMoveToNewPath;
 
     [SerializeField] private List<Transform> paths;
 
@@ -20,19 +25,39 @@ public class EnemyController : CharacterBaseController
     {
         SetRotationToZero();
         player = FindObjectOfType<PlayerController>();
-        MovementSpeed = 7.0f;
+        MovementSpeed = 6.0f;
     }
 
     private void Update()
     {
         //MovementDirection = (player.transform.position - transform.position).normalized;
         DetectPlayer();
+
+        if (_currentPathIndex > paths.Count - 1)
+        {
+            _currentPathIndex = 0;
+        }
+        
+        _distance = Vector3.Distance(paths[_currentPathIndex].position, transform.position);
+        if (_distance < 0.1f)
+        {
+            _currentPathIndex++;
+        }
+        else
+        {
+            _isMoveToNewPath = true;
+            if (_isMoveToNewPath)
+            {
+                MovementDirection = (paths[_currentPathIndex].position - transform.position).normalized;
+                StartCoroutine(WaitForNextPathAvailable());
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        Walking();
         Turning();
+        Walking();
     }
 
     protected override void Sprinting()
@@ -63,6 +88,13 @@ public class EnemyController : CharacterBaseController
         }
         
         return null;
+    }
+
+    private IEnumerator WaitForNextPathAvailable()
+    {
+        _isMoveToNewPath = false;
+        yield return new WaitUntil(() => { return _distance < 0.1f;});
+        _isMoveToNewPath = true;
     }
 
 #if UNITY_EDITOR
