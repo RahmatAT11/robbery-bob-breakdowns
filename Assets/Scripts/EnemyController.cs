@@ -13,6 +13,7 @@ public class EnemyController : CharacterBaseController
     private int _currentPathIndex = 0;
 
     private bool _isMoveToNewPath;
+    private bool _isPlayerDetected;
 
     [SerializeField] private List<Transform> paths;
 
@@ -31,8 +32,14 @@ public class EnemyController : CharacterBaseController
     private void Update()
     {
         //MovementDirection = (player.transform.position - transform.position).normalized;
-        DetectPlayer();
+        _isPlayerDetected = DetectPlayer() != null;
 
+        if (_isPlayerDetected)
+        {
+            MovementDirection = (player.transform.position - transform.position).normalized;
+            return;
+        }
+        
         if (_currentPathIndex > paths.Count - 1)
         {
             _currentPathIndex = 0;
