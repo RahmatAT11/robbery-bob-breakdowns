@@ -7,8 +7,9 @@ public class PlayerController : CharacterBaseController
 
     [SerializeField] Text coinCounter;
     [SerializeField] GameObject coinMagnet;
+    [SerializeField] float TreasureCount;
 
-    private int _coinNumber;
+    private float _coinNumber;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class PlayerController : CharacterBaseController
     {
         ProcessInput();
 
-        coinCounter.text = _coinNumber.ToString();
+        coinCounter.text = (_coinNumber / TreasureCount * 100).ToString() + "%";
         coinMagnet.transform.position = new Vector2(transform.position.x, transform.position.y);
     }
 
