@@ -8,6 +8,7 @@ public class PlayerController : CharacterBaseController
     [SerializeField] Text coinCounter;
     [SerializeField] GameObject coinMagnet;
     [SerializeField] float TreasureCount;
+    public Image TreaseureInfoUI;
 
     private float _coinNumber;
 
@@ -19,6 +20,7 @@ public class PlayerController : CharacterBaseController
     private void Start()
     {
         SetRotationToZero();
+        TreaseureInfoUI.fillAmount = 0;
     }
 
     private void Update()
@@ -27,6 +29,7 @@ public class PlayerController : CharacterBaseController
 
         coinCounter.text = (_coinNumber / TreasureCount * 100).ToString() + "%";
         coinMagnet.transform.position = new Vector2(transform.position.x, transform.position.y);
+        TreaseureInfoUI.fillAmount = _coinNumber * (1/TreasureCount);
     }
 
     private void FixedUpdate()
