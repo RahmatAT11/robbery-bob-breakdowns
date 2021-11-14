@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerController : CharacterBaseController
 {
+    public GameObject DoorWin, WinPanel, LosePanel;
+    
     [SerializeField] private GameJoystickController gameJoystickController;
 
     [SerializeField] Text coinCounter;
@@ -66,6 +68,27 @@ public class PlayerController : CharacterBaseController
         {
             Destroy(col.gameObject);
             _coinNumber += 1;
+        }
+
+        if (col.gameObject.tag.Equals("MainTreasure"))
+        {
+            Destroy(col.gameObject);
+            _coinNumber += 1;
+            Debug.Log("Main Treasure Terambil");
+
+            DoorWin.SetActive(true);
+        }
+
+        if (col.gameObject.tag.Equals("GetOut"))
+        {
+            Destroy(col.gameObject);
+
+            WinPanel.SetActive(true);
+        }
+
+        if (col.gameObject.tag.Equals("Enemy"))
+        {
+            LosePanel.SetActive(true);
         }
     }
 }
