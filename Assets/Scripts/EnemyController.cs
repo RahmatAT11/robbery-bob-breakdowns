@@ -90,6 +90,7 @@ public class EnemyController : CharacterBaseController
                 Mathf.Cos((_detectionAngle * 0.5f) * Mathf.Deg2Rad))
             {
                 Debug.Log("Player has been detected!");
+                player.playerDetected = true;
                 return player;
             }
         }
